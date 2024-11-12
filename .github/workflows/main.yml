@@ -25,6 +25,12 @@ jobs:
     - name: check cwd
       run: pwd 
 
-    - name: Run files.py script
+    - name: Run files.py scriptç
+      env:
+        URL_LOG: ${{ secrets.URL_LOG }}
+        EMAIL: ${{ secrets.EMAIL }}
+        RECIPIENT: ${{ secrets.RECIPIENT }}
+        PASSWORD_AUTO: ${{ secrets.PASSWORD_AUTO }}
       run: |
         python gmail_automate/send_reminder.py
+      
