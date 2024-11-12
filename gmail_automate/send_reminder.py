@@ -10,9 +10,12 @@ import os
 
 # Email credentials and settings
 
-RECIPIENT = "ilekuraidowu@gmail.com"
+RECIPIENT = os.getenv("RECIPIENT")
+EMAIL = os.getenv("EMAIL")
+PASSWORD_AUTO = os.getenv("PASSWORD_AUTO")
+URL_LOG = os.getenv("URL_LOG")
 SUBJECT = "Remember to log your time on Personio."
-BODY = "This is a friendly reminder to log your time on Personio with this link https://fctg.personio.de/"
+BODY = "This is a friendly reminder to log your time on Personio with this link " + URL_LOG
 
 def send_email():
     # Check if today is Monday through Friday
