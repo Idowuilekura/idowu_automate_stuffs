@@ -11,7 +11,7 @@ import os
 
 RECIPIENT = os.getenv("RECIPIENT")
 EMAIL = os.getenv("EMAIL")
-PASSWORD_AUTO = os.getenv("PASSWORD_AUTO")
+PASSWORD = os.getenv("PASSWORD_AUTO")
 URL_LOG = os.getenv("URL_LOG")
 SUBJECT = "Remember to log your time on Personio."
 BODY = "This is a friendly reminder to log your time on Personio with this link " + URL_LOG
