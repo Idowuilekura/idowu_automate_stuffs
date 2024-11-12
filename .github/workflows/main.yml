@@ -25,4 +25,4 @@ jobs:
 
     - name: Run files.py script
       run: |
-        python google_automate/files.py
+        python gmail_automate/files.py
