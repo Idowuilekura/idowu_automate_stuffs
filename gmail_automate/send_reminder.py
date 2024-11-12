@@ -58,6 +58,23 @@ def delete_email():
                 print("Email deleted successfully.")
             else:
                 print("No email found with the given subject.")
+
+            #delete the emails from sent
+            mail.select("sent")
+
+            # Search for the specific email by subject
+            status, messages = mail.search(None, f'SUBJECT "{SUBJECT}"')
+            email_ids = messages[0].split()
+
+            if email_ids:
+                for email_id in email_ids:
+                    # Mark email for deletion
+                    mail.store(email_id, "+FLAGS", "\\Deleted")
+                mail.expunge()  # Permanently delete the email
+                print("Email deleted successfully.")
+            else:
+                print("No email found with the given subject.")
+            
     except Exception as e:
         print(f"Error deleting email: {e}")
 
