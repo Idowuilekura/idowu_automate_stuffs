@@ -3,7 +3,7 @@ name: Trigger files.py Script
 on:
   schedule:
     # Run at 6:00 PM UTC on Monday to Friday (cron format)
-    - cron: '17 17 * * 1-5'
+    - cron: '30 17 * * 1-5'
 
 jobs:
   run-script:
