@@ -3,7 +3,6 @@ import imaplib
 import email
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
-import schedule
 import time
 from datetime import datetime
 import os
