@@ -77,7 +77,7 @@ def main():
     print("about to send the email")
     send_email()
     print("sleeping now")
-    time.sleep(time_sleep(0.01))
+    time.sleep(time_sleep(0.1))
     delete_email()
 
 
