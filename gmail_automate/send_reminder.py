@@ -16,6 +16,7 @@ URL_LOG = os.getenv("URL_LOG")
 SUBJECT = "Remember to log your time on Personio."
 BODY = "This is a friendly reminder to log your time on Personio with this link " + URL_LOG
 
+
 def send_email():
     # Check if today is Monday through Friday
     current_day = datetime.now().weekday()  # 0=Monday, 6=Sunday
@@ -39,7 +40,7 @@ def send_email():
     else:
         print("Today is not a weekday. Email not sent.")
 
-def delete_email():
+def delete_email_inbox():
     try:
         # Connect to Gmail's IMAP server
         with imaplib.IMAP4_SSL("imap.gmail.com") as mail:
@@ -60,20 +61,21 @@ def delete_email():
                 print("No email found with the given subject.")
 
             #delete the emails from sent
-            mail.select("sent")
+            # mail.login(EMAIL, PASSWORD)
+            # mail.select("Sent")
 
-            # Search for the specific email by subject
-            status, messages = mail.search(None, f'SUBJECT "{SUBJECT}"')
-            email_ids = messages[0].split()
+            # # Search for the specific email by subject
+            # status, messages = mail.search(None, f'SUBJECT "{SUBJECT}"')
+            # email_ids = messages[0].split()
 
-            if email_ids:
-                for email_id in email_ids:
-                    # Mark email for deletion
-                    mail.store(email_id, "+FLAGS", "\\Deleted")
-                mail.expunge()  # Permanently delete the email
-                print("Email deleted successfully.")
-            else:
-                print("No email found with the given subject.")
+            # if email_ids:
+            #     for email_id in email_ids:
+            #         # Mark email for deletion
+            #         mail.store(email_id, "+FLAGS", "\\Deleted")
+            #     mail.expunge()  # Permanently delete the email
+            #     print("Email deleted successfully.")
+            # else:
+            #     print("No email found with the given subject.")
             
     except Exception as e:
         print(f"Error deleting email: {e}")
@@ -83,8 +85,33 @@ def delete_email():
 # schedule.every(1).hour.do(delete_email)  # Schedule deletion
 
 # Keep the script running to execute the scheduled task
+# if len(messages) != 0:
+#     for mail in messages:
+#         if len(str(mail.decode("utf-8"))) != 0:
+#         # _, msg = imap.fetch(mail, "(RFC822)")
+#             imap.store(mail, "+FLAGS", "\\Deleted")
+def delete_main_sentbox():
+    try:
+        # Connect to Gmail's IMAP server
+        with imaplib.IMAP4_SSL("imap.gmail.com") as mail:
+            mail.login(EMAIL, PASSWORD)
+            # mail.select("inbox")
+            mail.select(b'"[Gmail]/Sent Mail"')
+            status, messages = mail.search(None, f'SUBJECT "{SUBJECT}"')
+            messages = messages[0].split(b' ')
+            if len(messages) != 0:
+                for mail_id in messages:
+                    # _, msg = imap.fetch(mail, "(RFC822)")
+                    if len(str(mail_id.decode("utf-8"))) != 0:
+                        mail.store(mail_id, "+FLAGS", "\\Deleted")
+            try:
+                mail.expunge()
+            except:
+                print("there was an issue")
+    except:
+        print("issue with the mail")
 
-send_email()
+# send_email()
 def time_sleep(hours_before_delete: int) -> int:
     seconds_to_hours = hours_before_delete * 3600
     return round(seconds_to_hours)
@@ -92,9 +119,10 @@ def time_sleep(hours_before_delete: int) -> int:
 def main():
     print("about to send the email")
     send_email()
-    print("sleeping now")
-    time.sleep(time_sleep(0.1))
-    delete_email()
+    # print("sleeping now")
+    # time.sleep(10)
+    delete_email_inbox()
+    delete_main_sentbox()
 
 
 if __name__ == "__main__":
