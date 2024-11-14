@@ -13,6 +13,7 @@ RECIPIENT = os.getenv("RECIPIENT")
 EMAIL = os.getenv("EMAIL")
 PASSWORD = os.getenv("PASSWORD_AUTO")
 URL_LOG = os.getenv("URL_LOG")
+TIME_TO_SLEEP = int(os.getenv("TIME_TO_SLEEP"))
 SUBJECT = "Remember to log your time on Personio."
 BODY = "This is a friendly reminder to log your time on Personio with this link " + URL_LOG
 
@@ -119,8 +120,8 @@ def time_sleep(hours_before_delete: int) -> int:
 def main():
     print("about to send the email")
     send_email()
-    # print("sleeping now")
-    # time.sleep(10)
+    print("sleeping now")
+    time.sleep(TIME_TO_SLEEP)
     delete_email_inbox()
     delete_main_sentbox()
 
