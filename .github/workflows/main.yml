@@ -31,6 +31,7 @@ jobs:
         EMAIL: ${{ secrets.EMAIL }}
         RECIPIENT: ${{ secrets.RECIPIENT }}
         PASSWORD_AUTO: ${{ secrets.PASSWORD_AUTO }}
+        TIME_TO_SLEEP: ${{ variables.TIME_TO_SLEEP }}
       run: |
         python gmail_automate/send_reminder.py
       
