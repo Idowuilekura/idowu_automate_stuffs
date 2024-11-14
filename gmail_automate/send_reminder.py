@@ -121,7 +121,7 @@ def main():
     print("about to send the email")
     send_email()
     print("sleeping now")
-    time.sleep(TIME_TO_SLEEP)
+    time.sleep(time_sleep(TIME_TO_SLEEP))
     delete_email_inbox()
     delete_main_sentbox()
 
