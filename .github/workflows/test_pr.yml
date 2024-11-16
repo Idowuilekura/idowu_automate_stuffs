@@ -29,7 +29,7 @@ jobs:
     - name: check for changes in the python file
       run: | 
           diff_name=$(git diff --name-only origin/master...HEAD | grep -E '^.*py$' || echo "")
-          echo pwd
+          echo $(pwd)
           if [ -z "$diff_name" ]; then
             echo "No Python file changes detected."
           else
