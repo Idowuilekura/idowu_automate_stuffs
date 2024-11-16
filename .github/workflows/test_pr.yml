@@ -20,3 +20,15 @@ jobs:
     - name: Display PR Number
       run: |
         echo "The pull request number is: ${{ github.event.pull_request.number }}"
+        
+    - name: Chekout code 
+      uses: actions/checkout@v3 
+      with:
+        fetch-depth: 0
+
+    - name: check for changes in the python file
+      run: | 
+          diff_name=$(git diff --name-only origin/main...HEAD | grep -E '^.*py$' || echo "")
+          echo $diff_name
+
+      
