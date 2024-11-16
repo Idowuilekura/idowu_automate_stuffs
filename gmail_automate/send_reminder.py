@@ -8,6 +8,7 @@ from datetime import datetime
 import os
 
 # Email credentials and settings
+print('made a change')
 
 RECIPIENT = os.getenv("RECIPIENT")
 EMAIL = os.getenv("EMAIL")
