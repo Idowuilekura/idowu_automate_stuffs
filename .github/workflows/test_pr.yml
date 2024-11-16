@@ -37,6 +37,7 @@ jobs:
             echo "$diff_name"
 
             for file in $diff_name; do 
+              echo "inside the file loop"
               echo $file
             done 
               
