@@ -35,6 +35,11 @@ jobs:
           else
             echo "Changed Python files:"
             echo "$diff_name"
+
+            for file in $diff_name; do 
+              echo $file
+            done 
+              
           fi
 
       
