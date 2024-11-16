@@ -30,5 +30,11 @@ jobs:
       run: | 
           diff_name=$(git diff --name-only origin/master...HEAD | grep -E '^.*py$' || echo "")
           echo $diff_name
+          if [ -z "$diff_name" ]; then
+            echo "No Python file changes detected."
+          else
+            echo "Changed Python files:"
+            echo "$diff_name"
+          fi
 
       
