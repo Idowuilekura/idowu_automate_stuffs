@@ -1,0 +1,21 @@
+name: test pr push
+
+on:
+  pull_request:
+
+# jobs:
+#   run-script:
+#     runs-on: ubuntu-latest
+
+#     steps:
+#     - name: Checkout repository
+#       uses: actions/checkout@v3 # Checks out the repository code
+#     - name: Display PR Number
+#       run: echo "The pull request number is: ${{ github.event.pull_request.number }}"
+jobs:
+  run-script:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Display PR Number
+      run: |
+        echo "The pull request number is: ${{ github.event.pull_request.number }}"
