@@ -40,8 +40,7 @@ jobs:
               echo "inside the file loop"
               echo $file
               IFS='\ ' read -r -a array <<< $file
-              folder_name=$(array[0])
-              file_name=$(array[1])
+              echo $array[0]
             done 
               
           fi
