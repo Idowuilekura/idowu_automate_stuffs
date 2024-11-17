@@ -40,7 +40,7 @@ jobs:
               echo "inside the file loop"
               echo $file
               IFS='\ ' read -r -a array <<< $file
-              echo $array[0]
+              echo "${array[0]}"
             done 
               
           fi
