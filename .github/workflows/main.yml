@@ -34,5 +34,6 @@ jobs:
         PASSWORD_AUTO: ${{ secrets.PASSWORD_AUTO }}
         TIME_TO_SLEEP: ${{ vars.TIME_TO_SLEEP }}
       run: |
-        python gmail_automate/send_reminder.py
+        echo "Hello"
+        # python gmail_automate/send_reminder.py
       
