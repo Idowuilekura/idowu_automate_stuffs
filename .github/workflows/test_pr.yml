@@ -39,7 +39,7 @@ jobs:
             for file in $diff_name; do 
               echo "inside the file loop"
               echo $file
-              IFS='\ ' read -r -a array <<< $file
+              IFS='/ ' read -r -a array <<< $file
               echo "${array[0]}"
             done 
               
